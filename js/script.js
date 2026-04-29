@@ -341,3 +341,146 @@ if(modalLive){
         }
     });
 }
+
+/* =========================
+   AULAS BÍBLICAS
+========================= */
+const aulas = [
+    { titulo: "Aula 01", descricao: "Introdução à fé", categoria: "Fé", video: "dQw4w9WgXcQ" },
+    { titulo: "Aula 02", descricao: "Vida com Deus", categoria: "Fé", video: "ysz5S6PUM-U" },
+    { titulo: "Aula 03", descricao: "Oração diária", categoria: "Oração", video: "ScMzIvxBSi4" },
+    { titulo: "Aula 04", descricao: "Família cristã", categoria: "Família", video: "hY7m5jjJ9mM" },
+    { titulo: "Aula 05", descricao: "Esperança", categoria: "Fé", video: "e-ORhEE9VVg" },
+    { titulo: "Aula 06", descricao: "Comunhão", categoria: "Oração", video: "kJQP7kiw5Fk" },
+    { titulo: "Aula 07", descricao: "Profecias bíblicas", categoria: "Profecias", video: "fLexgOxsZu0" },
+    { titulo: "Aula 08", descricao: "Salvação", categoria: "Fé", video: "2Vv-BfVoq4g" },
+    { titulo: "Aula 09", descricao: "Amor de Deus", categoria: "Fé", video: "OPf0YbXqDm0" },
+    { titulo: "Aula 10", descricao: "Vida espiritual", categoria: "Oração", video: "CevxZvSJLk8" },
+
+    { titulo: "Aula 11", descricao: "Família e fé", categoria: "Família", video: "RgKAFK5djSk" },
+    { titulo: "Aula 12", descricao: "Propósito de vida", categoria: "Fé", video: "JGwWNGJdvx8" },
+    { titulo: "Aula 13", descricao: "Profecias finais", categoria: "Profecias", video: "09R8_2nJtjg" },
+    { titulo: "Aula 14", descricao: "Esperança futura", categoria: "Fé", video: "YQHsXMglC9A" },
+    { titulo: "Aula 15", descricao: "Confiança em Deus", categoria: "Fé", video: "pRpeEdMmmQ0" },
+    { titulo: "Aula 16", descricao: "Oração e fé", categoria: "Oração", video: "kffacxfA7G4" },
+    { titulo: "Aula 17", descricao: "Vida com Cristo", categoria: "Fé", video: "3JZ_D3ELwOQ" },
+    { titulo: "Aula 18", descricao: "Família e valores", categoria: "Família", video: "uelHwf8o7_U" },
+    { titulo: "Aula 19", descricao: "Salvação eterna", categoria: "Fé", video: "60ItHLz5WEA" },
+    { titulo: "Aula 20", descricao: "Caminho da fé", categoria: "Fé", video: "nfWlot6h_JM" },
+
+    { titulo: "Aula 21", descricao: "Deus é amor", categoria: "Fé", video: "34Na4j8AVgA" },
+    { titulo: "Aula 22", descricao: "Confiança total", categoria: "Fé", video: "ktvTqknDobU" },
+    { titulo: "Aula 23", descricao: "Família abençoada", categoria: "Família", video: "lp-EO5I60KA" },
+    { titulo: "Aula 24", descricao: "Vida com propósito", categoria: "Fé", video: "SlPhMPnQ58k" },
+    { titulo: "Aula 25", descricao: "Profecias atuais", categoria: "Profecias", video: "hLQl3WQQoQ0" },
+    { titulo: "Aula 26", descricao: "Esperança viva", categoria: "Fé", video: "y6120QOlsfU" },
+    { titulo: "Aula 27", descricao: "Comunhão com Deus", categoria: "Oração", video: "ktvTqknDobU" },
+    { titulo: "Aula 28", descricao: "Vida espiritual", categoria: "Oração", video: "JGwWNGJdvx8" },
+    { titulo: "Aula 29", descricao: "Família forte", categoria: "Família", video: "CevxZvSJLk8" },
+    { titulo: "Aula 30", descricao: "Fé inabalável", categoria: "Fé", video: "2Vv-BfVoq4g" }
+];
+
+const abrirAulas = document.getElementById("abrir-aulas");
+const fecharAulas = document.getElementById("fechar-aulas");
+const modalAulas = document.getElementById("modal-aulas");
+
+const aulasGrid = document.getElementById("aulas-grid");
+const buscarAula = document.getElementById("buscar-aula");
+const filtroCategoria = document.getElementById("filtro-categoria");
+
+const modalPlayer = document.getElementById("modal-player");
+const fecharPlayer = document.getElementById("fechar-player");
+const playerVideo = document.getElementById("player-video");
+const tituloVideo = document.getElementById("titulo-video");
+
+function carregarAulas(){
+    const busca = buscarAula.value.toLowerCase();
+    const categoria = filtroCategoria.value;
+
+    const aulasFiltradas = aulas.filter(aula => {
+        return aula.titulo.toLowerCase().includes(busca) &&
+        (categoria === "Todos" || aula.categoria === categoria);
+    });
+
+    aulasGrid.innerHTML = "";
+
+    aulasFiltradas.forEach(aula => {
+        aulasGrid.innerHTML += `
+        <div class="aula-card animar zoom" data-video="${aula.video}" data-titulo="${aula.titulo}">
+            <div class="aula-thumb">
+                <img src="https://img.youtube.com/vi/${aula.video}/hqdefault.jpg">
+                <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+            </div>
+
+            <div class="aula-info">
+                <span>${aula.categoria}</span>
+                <h3>${aula.titulo}</h3>
+                <p>${aula.descricao}</p>
+            </div>
+        </div>
+        
+        `;
+    });
+
+    document.querySelectorAll(".aula-card").forEach(card => {
+        card.addEventListener("click", () => {
+            tituloVideo.innerText = card.dataset.titulo;
+            playerVideo.src = `https://www.youtube.com/embed/${card.dataset.video}`;
+            modalPlayer.classList.add("ativo");
+        });
+    });
+
+    animarScroll();
+}
+
+abrirAulas.addEventListener("click", () => {
+    modalAulas.classList.add("ativo");
+    carregarAulas();
+});
+
+fecharAulas.addEventListener("click", () => {
+    modalAulas.classList.remove("ativo");
+});
+
+buscarAula.addEventListener("input", carregarAulas);
+filtroCategoria.addEventListener("change", carregarAulas);
+
+fecharPlayer.addEventListener("click", () => {
+    modalPlayer.classList.remove("ativo");
+    playerVideo.src = "";
+});
+
+/* =========================
+   FECHAR MODAIS COM ESC
+========================= */
+document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape"){
+        document.querySelectorAll(".ativo").forEach(modal => {
+            modal.classList.remove("ativo");
+        });
+
+        if(typeof playerVideo !== "undefined" && playerVideo){
+            playerVideo.src = "";
+        }
+    }
+});
+
+/* =========================
+   SCROLL REVEAL PREMIUM
+========================= */
+function animarScroll(){
+    const elementos = document.querySelectorAll(".animar");
+
+    elementos.forEach((el, index) => {
+        const topo = el.getBoundingClientRect().top;
+        const alturaTela = window.innerHeight;
+
+        if(topo < alturaTela - 80){
+            el.style.transitionDelay = `${Math.min(index * 0.04, 0.28)}s`;
+            el.classList.add("ativo");
+        }
+    });
+}
+
+window.addEventListener("scroll", animarScroll);
+window.addEventListener("load", animarScroll);

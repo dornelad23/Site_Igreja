@@ -26,6 +26,7 @@
 <a href="#">Início</a>
 <a href="#historia">Nossa História</a>
 <a href="#cultos">Cultos</a>
+<a href="#aulas">Aulas</a>
 <a href="#eventos">Eventos</a>
 <a href="#contato">Contato</a>
 <a href="#" id="abrir-live" class="link-ao-vivo">Ao Vivo</a>
@@ -62,16 +63,16 @@
 </div>
 
 <div class="banner-text">
-<h1>IASD Belém</h1>
-<p>Uma igreja para todos. Um lugar de esperança.</p>
-<a href="#historia" class="btn-banner">Saiba Mais</a>
+<h1 class="animar">IASD Belém</h1>
+<p class="animar">Uma igreja para todos. Um lugar de esperança.</p>
+<a href="#historia" class="btn-banner animar">Saiba Mais</a>
 </div>
 </section>
 
 <!-- HISTÓRIA -->
-<section id="historia">
+<section id="historia" class="animar">
 <div class="container historia-container">
-<div class="historia-card">
+<div class="historia-card animar zoom">
 <h2>Nossa História</h2>
 
 <p>A Igreja Adventista do Sétimo Dia de Belém nasceu com o propósito de levar esperança, fé e amor para toda a comunidade. Desde o início, nossa missão sempre foi acolher pessoas, fortalecer famílias e compartilhar a mensagem de esperança encontrada na Palavra de Deus.</p>
@@ -84,19 +85,19 @@
 </section>
 
 <!-- CULTOS -->
-<section id="cultos" class="bg">
+<section id="cultos" class="animar">
 <div class="container">
 <h2>Cultos</h2>
 
 <div class="cultos">
-<div class="culto">
+<div class="culto animar esquerda">
 <i class="fa-solid fa-church"></i>
 <h3>Sábado</h3>
 <p>Escola Sabatina & Culto Divino</p>
 <span>09:30</span>
 </div>
 
-<div class="culto">
+<div class="culto animar direita">
 <i class="fa-solid fa-book-bible"></i>
 <h3>Quarta-feira</h3>
 <p>Oração e Estudo Bíblico</p>
@@ -107,11 +108,11 @@
 </section>
 
 <!-- PEDIDOS DE ORAÇÃO -->
-<section id="oracao">
+<section id="oracao" class="animar">
 <div class="container">
-<div class="oracao-card">
+<div class="oracao-card animar zoom">
 <div class="oracao-texto">
-<h2>Pedidos de Oração</h2>
+<h2 class="animar">Pedidos de Oração</h2>
 <p>Escreva seu pedido abaixo. Nossa equipe irá orar por você. Se preferir, envie de forma anônima.</p>
 </div>
 
@@ -134,14 +135,63 @@ Enviar de forma anônima
 </div>
 </section>
 
-<!-- EVENTOS -->
-<section id="eventos">
+<section id="aulas" class="animar">
 <div class="container">
-<h2>Eventos</h2>
+
+<div class="aulas-chamada animar">
+<h2>Aulas Bíblicas</h2>
+<p>Explore estudos bíblicos organizados por temas e assista diretamente no site.</p>
+<button id="abrir-aulas" class="btn-aulas">Ver aulas bíblicas</button>
+</div>
+
+</div>
+</section>
+
+<div class="modal-aulas" id="modal-aulas">
+<div class="modal-aulas-conteudo">
+
+<button class="fechar-aulas" id="fechar-aulas">&times;</button>
+
+<h2>Central de Aulas Bíblicas</h2>
+<p class="aulas-modal-subtitulo">Pesquise, filtre e escolha uma aula para assistir.</p>
+
+<div class="aulas-controles">
+<input type="text" id="buscar-aula" placeholder="Pesquisar aula...">
+
+<select id="filtro-categoria">
+<option value="Todos">Todas as categorias</option>
+<option value="Fé">Fé</option>
+<option value="Oração">Oração</option>
+<option value="Família">Família</option>
+<option value="Profecias">Profecias</option>
+</select>
+</div>
+
+<div class="aulas-grid" id="aulas-grid"></div>
+
+</div>
+</div>
+
+<div class="modal-player" id="modal-player">
+<div class="player-conteudo">
+
+<button class="fechar-player" id="fechar-player">&times;</button>
+
+<h2 id="titulo-video">Aula Bíblica</h2>
+
+<iframe id="player-video" allowfullscreen></iframe>
+
+</div>
+</div>
+
+<!-- EVENTOS -->
+<section id="eventos" class="animar">
+<div class="container">
+<h2 class="animar">Eventos</h2>
 
 <div class="eventos" id="lista-eventos-home"></div>
 
-<div class="eventos-botao-area">
+<div class="evento animar">
 <button class="btn-mais-eventos" id="abrir-agenda">Ver agenda completa</button>
 </div>
 </div>
@@ -169,12 +219,12 @@ Enviar de forma anônima
 </div>
 
 <!-- CONTATO -->
-<section id="contato" class="bg">
+<section id="contato" class="animar">
 <div class="container">
-<h2>Contato</h2>
+<h2 class="animar">Contato</h2>
 
 <div class="contato">
-<div class="contato-info">
+<div class="contato-info animar esquerda">
 <div class="contato-item">
 <i class="fa-solid fa-location-dot"></i>
 <div>
@@ -200,7 +250,7 @@ Enviar de forma anônima
 </div>
 </div>
 
-<div class="mapa">
+<div class="mapa animar direita">6
 <iframe src="https://www.google.com/maps?q=Igreja+Adventista+do+Sétimo+Dia+Belém+São+Paulo&output=embed"></iframe>
 </div>
 </div>
