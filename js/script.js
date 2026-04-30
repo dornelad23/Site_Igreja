@@ -8,7 +8,6 @@ function trocarSlide(){
     if(slides.length === 0) return;
 
     slides[index].classList.remove("active");
-
     index++;
 
     if(index >= slides.length){
@@ -36,6 +35,19 @@ window.addEventListener("scroll", () => {
         header.classList.remove("scroll");
     }
 });
+
+/* =========================
+   CONTROLE DE SCROLL DOS MODAIS
+========================= */
+function travarScroll(){
+    document.documentElement.classList.add("modal-aberto");
+    document.body.classList.add("modal-aberto");
+}
+
+function liberarScroll(){
+    document.documentElement.classList.remove("modal-aberto");
+    document.body.classList.remove("modal-aberto");
+}
 
 /* =========================
    PEDIDOS DE ORAÇÃO
@@ -150,10 +162,9 @@ function pegarEventosFuturos(){
 }
 
 function carregarEventosHome(){
-    const eventosFuturos = pegarEventosFuturos();
-
     if(!listaHome) return;
 
+    const eventosFuturos = pegarEventosFuturos();
     listaHome.innerHTML = "";
 
     eventosFuturos.slice(0, 3).forEach((evento, index) => {
@@ -178,13 +189,13 @@ function carregarEventosHome(){
 }
 
 function carregarAgenda(){
+    if(!agendaCompleta) return;
+
     let eventosFiltrados = pegarEventosFuturos();
 
     if(filtroAtual !== "Todos"){
         eventosFiltrados = eventosFiltrados.filter(evento => evento.tipo === filtroAtual);
     }
-
-    if(!agendaCompleta) return;
 
     agendaCompleta.innerHTML = "";
 
@@ -260,6 +271,7 @@ if(abrirAgenda && modalAgenda){
         }
 
         modalAgenda.classList.add("ativo");
+        travarScroll();
         carregarAgenda();
     });
 }
@@ -267,6 +279,7 @@ if(abrirAgenda && modalAgenda){
 if(fecharAgenda && modalAgenda){
     fecharAgenda.addEventListener("click", () => {
         modalAgenda.classList.remove("ativo");
+        liberarScroll();
     });
 }
 
@@ -274,6 +287,7 @@ if(modalAgenda){
     modalAgenda.addEventListener("click", (e) => {
         if(e.target === modalAgenda){
             modalAgenda.classList.remove("ativo");
+            liberarScroll();
         }
     });
 }
@@ -315,6 +329,7 @@ if(abrirLive && modalLive){
         e.preventDefault();
 
         modalLive.classList.add("ativo");
+        travarScroll();
 
         setTimeout(() => {
             try{
@@ -331,6 +346,7 @@ if(abrirLive && modalLive){
 if(fecharLive && modalLive){
     fecharLive.addEventListener("click", () => {
         modalLive.classList.remove("ativo");
+        liberarScroll();
     });
 }
 
@@ -338,6 +354,7 @@ if(modalLive){
     modalLive.addEventListener("click", (e) => {
         if(e.target === modalLive){
             modalLive.classList.remove("ativo");
+            liberarScroll();
         }
     });
 }
@@ -386,29 +403,34 @@ const modalAulas = document.getElementById("modal-aulas");
 
 const aulasGrid = document.getElementById("aulas-grid");
 const buscarAula = document.getElementById("buscar-aula");
-const filtroCategoria = document.getElementById("filtro-categoria");
+const filtrosAula = document.querySelectorAll(".filtro-aula");
+const filtroCategoriaSelect = document.getElementById("filtro-categoria");
 
 const modalPlayer = document.getElementById("modal-player");
 const fecharPlayer = document.getElementById("fechar-player");
 const playerVideo = document.getElementById("player-video");
 const tituloVideo = document.getElementById("titulo-video");
 
-function carregarAulas(){
-    const busca = buscarAula.value.toLowerCase();
-    const categoria = filtroCategoria.value;
+let categoriaAulaAtual = "Todos";
+let paginaAtual = 1;
+const aulasPorPagina = 6;
 
-    const aulasFiltradas = aulas.filter(aula => {
-        return aula.titulo.toLowerCase().includes(busca) &&
-        (categoria === "Todos" || aula.categoria === categoria);
+function pegarAulasFiltradas(){
+    const busca = buscarAula ? buscarAula.value.toLowerCase().trim() : "";
+
+    return aulas.filter(aula => {
+        const textoBusca = `${aula.titulo} ${aula.descricao} ${aula.categoria}`.toLowerCase();
+
+        return textoBusca.includes(busca) &&
+        (categoriaAulaAtual === "Todos" || aula.categoria === categoriaAulaAtual);
     });
+}
 
-    aulasGrid.innerHTML = "";
-
-    aulasFiltradas.forEach(aula => {
-        aulasGrid.innerHTML += `
-        <div class="aula-card animar zoom" data-video="${aula.video}" data-titulo="${aula.titulo}">
+function criarCardAula(aula){
+    return `
+        <div class="aula-card" data-video="${aula.video}" data-titulo="${aula.titulo}">
             <div class="aula-thumb">
-                <img src="https://img.youtube.com/vi/${aula.video}/hqdefault.jpg">
+                <img src="https://img.youtube.com/vi/${aula.video}/hqdefault.jpg" alt="${aula.titulo}" loading="lazy">
                 <div class="play-icon"><i class="fa-solid fa-play"></i></div>
             </div>
 
@@ -418,50 +440,188 @@ function carregarAulas(){
                 <p>${aula.descricao}</p>
             </div>
         </div>
-        
-        `;
-    });
+    `;
+}
 
+function ativarCliqueDasAulas(){
     document.querySelectorAll(".aula-card").forEach(card => {
-        card.addEventListener("click", () => {
+        card.onclick = () => {
+            if(!modalPlayer || !playerVideo || !tituloVideo) return;
+
             tituloVideo.innerText = card.dataset.titulo;
             playerVideo.src = `https://www.youtube.com/embed/${card.dataset.video}`;
             modalPlayer.classList.add("ativo");
-        });
+            travarScroll();
+        };
     });
-
-    animarScroll();
 }
 
-abrirAulas.addEventListener("click", () => {
-    modalAulas.classList.add("ativo");
-    carregarAulas();
-});
+function carregarAulas(reset = true){
+    if(!aulasGrid) return;
 
-fecharAulas.addEventListener("click", () => {
-    modalAulas.classList.remove("ativo");
-});
+    if(reset){
+        paginaAtual = 1;
+        aulasGrid.innerHTML = "";
+    }
 
-buscarAula.addEventListener("input", carregarAulas);
-filtroCategoria.addEventListener("change", carregarAulas);
+    const aulasFiltradas = pegarAulasFiltradas();
 
-fecharPlayer.addEventListener("click", () => {
-    modalPlayer.classList.remove("ativo");
-    playerVideo.src = "";
-});
+    if(aulasFiltradas.length === 0){
+        aulasGrid.innerHTML = `
+            <div class="sem-eventos">
+                <div class="icone-calendario">
+                    <i class="fa-solid fa-video-slash"></i>
+                </div>
+
+                <h3>Nenhuma aula encontrada</h3>
+                <p>Tente pesquisar outro nome ou mudar a categoria.</p>
+            </div>
+        `;
+        return;
+    }
+
+    const inicio = (paginaAtual - 1) * aulasPorPagina;
+    const fim = inicio + aulasPorPagina;
+    const aulasPagina = aulasFiltradas.slice(inicio, fim);
+
+    aulasPagina.forEach(aula => {
+        aulasGrid.innerHTML += criarCardAula(aula);
+    });
+
+    const botaoAntigo = document.getElementById("ver-mais-aulas");
+
+    if(botaoAntigo){
+        botaoAntigo.remove();
+    }
+
+    if(fim < aulasFiltradas.length){
+        aulasGrid.innerHTML += `
+            <button id="ver-mais-aulas" class="btn-ver-mais">
+                Ver mais aulas
+            </button>
+        `;
+
+        const btnVerMais = document.getElementById("ver-mais-aulas");
+
+        if(btnVerMais){
+            btnVerMais.addEventListener("click", () => {
+                paginaAtual++;
+                btnVerMais.remove();
+                carregarAulas(false);
+            });
+        }
+    }
+
+    ativarCliqueDasAulas();
+}
+
+if(abrirAulas && modalAulas){
+    abrirAulas.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        modalAulas.classList.add("ativo");
+        travarScroll();
+        carregarAulas(true);
+    });
+}
+
+if(fecharAulas && modalAulas){
+    fecharAulas.addEventListener("click", () => {
+        modalAulas.classList.remove("ativo");
+        liberarScroll();
+    });
+}
+
+if(modalAulas){
+    modalAulas.addEventListener("click", (e) => {
+        if(e.target === modalAulas){
+            modalAulas.classList.remove("ativo");
+            liberarScroll();
+        }
+    });
+}
+
+if(buscarAula){
+    buscarAula.addEventListener("input", () => carregarAulas(true));
+}
+
+/* Funciona com filtro em botões */
+if(filtrosAula.length > 0){
+    filtrosAula.forEach(btn => {
+        btn.addEventListener("click", () => {
+            filtrosAula.forEach(item => item.classList.remove("ativo"));
+            btn.classList.add("ativo");
+
+            categoriaAulaAtual = btn.dataset.categoria || "Todos";
+            carregarAulas(true);
+        });
+    });
+}
+
+/* Funciona também se você voltar a usar select */
+if(filtroCategoriaSelect && filtroCategoriaSelect.tagName === "SELECT"){
+    filtroCategoriaSelect.addEventListener("change", () => {
+        categoriaAulaAtual = filtroCategoriaSelect.value;
+        carregarAulas(true);
+    });
+}
+
+if(fecharPlayer && modalPlayer){
+    fecharPlayer.addEventListener("click", () => {
+        modalPlayer.classList.remove("ativo");
+
+        if(playerVideo){
+            playerVideo.src = "";
+        }
+
+        if(!modalAulas || !modalAulas.classList.contains("ativo")){
+            liberarScroll();
+        }
+    });
+}
+
+if(modalPlayer){
+    modalPlayer.addEventListener("click", (e) => {
+        if(e.target === modalPlayer){
+            modalPlayer.classList.remove("ativo");
+
+            if(playerVideo){
+                playerVideo.src = "";
+            }
+
+            if(!modalAulas || !modalAulas.classList.contains("ativo")){
+                liberarScroll();
+            }
+        }
+    });
+}
 
 /* =========================
    FECHAR MODAIS COM ESC
 ========================= */
 document.addEventListener("keydown", (e) => {
     if(e.key === "Escape"){
-        document.querySelectorAll(".ativo").forEach(modal => {
-            modal.classList.remove("ativo");
-        });
+        if(modalAgenda){
+            modalAgenda.classList.remove("ativo");
+        }
 
-        if(typeof playerVideo !== "undefined" && playerVideo){
+        if(modalLive){
+            modalLive.classList.remove("ativo");
+        }
+
+        if(modalAulas){
+            modalAulas.classList.remove("ativo");
+        }
+
+        if(modalPlayer){
+            modalPlayer.classList.remove("ativo");
+        }
+
+        if(playerVideo){
             playerVideo.src = "";
         }
+
+        liberarScroll();
     }
 });
 
@@ -484,3 +644,32 @@ function animarScroll(){
 
 window.addEventListener("scroll", animarScroll);
 window.addEventListener("load", animarScroll);
+
+const menuToggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu");
+
+if(menuToggle && menu){
+    menuToggle.addEventListener("click", () => {
+        menu.classList.toggle("ativo");
+
+        const icone = menuToggle.querySelector("i");
+
+        if(menu.classList.contains("ativo")){
+            icone.classList.remove("fa-bars");
+            icone.classList.add("fa-xmark");
+        }else{
+            icone.classList.remove("fa-xmark");
+            icone.classList.add("fa-bars");
+        }
+    });
+
+    menu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            menu.classList.remove("ativo");
+
+            const icone = menuToggle.querySelector("i");
+            icone.classList.remove("fa-xmark");
+            icone.classList.add("fa-bars");
+        });
+    });
+}

@@ -22,14 +22,18 @@
 <small>Igreja Adventista do Sétimo Dia</small>
 </div>
 
-<nav>
-<a href="#">Início</a>
-<a href="#historia">Nossa História</a>
-<a href="#cultos">Cultos</a>
-<a href="#aulas">Aulas</a>
-<a href="#eventos">Eventos</a>
-<a href="#contato">Contato</a>
-<a href="#" id="abrir-live" class="link-ao-vivo">Ao Vivo</a>
+<<button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+<nav id="menu">
+    <a href="#">Início</a>
+    <a href="#historia">Nossa História</a>
+    <a href="#cultos">Cultos</a>
+    <a href="#aulas">Aulas</a>
+    <a href="#eventos">Eventos</a>
+    <a href="#contato">Contato</a>
+    <a href="#" id="abrir-live" class="link-ao-vivo">Ao Vivo</a>
 </nav>
 </div>
 </header>
@@ -136,52 +140,44 @@ Enviar de forma anônima
 </section>
 
 <section id="aulas" class="animar">
-<div class="container">
-
-<div class="aulas-chamada animar">
-<h2>Aulas Bíblicas</h2>
-<p>Explore estudos bíblicos organizados por temas e assista diretamente no site.</p>
-<button id="abrir-aulas" class="btn-aulas">Ver aulas bíblicas</button>
-</div>
-
-</div>
+    <div class="container">
+        <div class="aulas-chamada animar">
+            <h2>Aulas Bíblicas</h2>
+            <p>Explore estudos bíblicos organizados por temas e assista diretamente no site.</p>
+            <button id="abrir-aulas" class="btn-aulas">Ver aulas bíblicas</button>
+        </div>
+    </div>
 </section>
 
 <div class="modal-aulas" id="modal-aulas">
-<div class="modal-aulas-conteudo">
+    <div class="modal-aulas-conteudo">
+        <button class="fechar-aulas" id="fechar-aulas">&times;</button>
 
-<button class="fechar-aulas" id="fechar-aulas">&times;</button>
+        <h2>Central de Aulas Bíblicas</h2>
+        <p class="aulas-modal-subtitulo">Pesquise, filtre e escolha uma aula para assistir.</p>
 
-<h2>Central de Aulas Bíblicas</h2>
-<p class="aulas-modal-subtitulo">Pesquise, filtre e escolha uma aula para assistir.</p>
+        <div class="aulas-controles">
+            <input type="text" id="buscar-aula" placeholder="Pesquisar aula...">
 
-<div class="aulas-controles">
-<input type="text" id="buscar-aula" placeholder="Pesquisar aula...">
+            <div class="filtro-aulas" id="filtro-categoria">
+                <button class="filtro-aula ativo" data-categoria="Todos">Todos</button>
+                <button class="filtro-aula" data-categoria="Fé">Fé</button>
+                <button class="filtro-aula" data-categoria="Oração">Oração</button>
+                <button class="filtro-aula" data-categoria="Família">Família</button>
+                <button class="filtro-aula" data-categoria="Profecias">Profecias</button>
+            </div>
+        </div>
 
-<select id="filtro-categoria">
-<option value="Todos">Todas as categorias</option>
-<option value="Fé">Fé</option>
-<option value="Oração">Oração</option>
-<option value="Família">Família</option>
-<option value="Profecias">Profecias</option>
-</select>
-</div>
-
-<div class="aulas-grid" id="aulas-grid"></div>
-
-</div>
+        <div class="aulas-grid" id="aulas-grid"></div>
+    </div>
 </div>
 
 <div class="modal-player" id="modal-player">
-<div class="player-conteudo">
-
-<button class="fechar-player" id="fechar-player">&times;</button>
-
-<h2 id="titulo-video">Aula Bíblica</h2>
-
-<iframe id="player-video" allowfullscreen></iframe>
-
-</div>
+    <div class="player-conteudo">
+        <button class="fechar-player" id="fechar-player">&times;</button>
+        <h2 id="titulo-video">Aula Bíblica</h2>
+        <iframe id="player-video" allowfullscreen></iframe>
+    </div>
 </div>
 
 <!-- EVENTOS -->
@@ -191,8 +187,10 @@ Enviar de forma anônima
 
 <div class="eventos" id="lista-eventos-home"></div>
 
-<div class="evento animar">
-<button class="btn-mais-eventos" id="abrir-agenda">Ver agenda completa</button>
+<div class="eventos-botao-area">
+    <button class="btn-mais-eventos" id="abrir-agenda">
+        Ver agenda completa
+    </button>
 </div>
 </div>
 </section>
@@ -250,7 +248,7 @@ Enviar de forma anônima
 </div>
 </div>
 
-<div class="mapa animar direita">6
+<div class="mapa animar direita">
 <iframe src="https://www.google.com/maps?q=Igreja+Adventista+do+Sétimo+Dia+Belém+São+Paulo&output=embed"></iframe>
 </div>
 </div>
