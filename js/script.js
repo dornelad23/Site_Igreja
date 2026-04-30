@@ -393,38 +393,38 @@ document.addEventListener("DOMContentLoaded", () => {
        AULAS BÍBLICAS
     ========================= */
     const aulas = [
-        { titulo: "Aula 01", descricao: "Introdução à fé", categoria: "Fé", video: "dQw4w9WgXcQ" },
-        { titulo: "Aula 02", descricao: "Vida com Deus", categoria: "Fé", video: "ysz5S6PUM-U" },
-        { titulo: "Aula 03", descricao: "Oração diária", categoria: "Oração", video: "ScMzIvxBSi4" },
-        { titulo: "Aula 04", descricao: "Família cristã", categoria: "Família", video: "hY7m5jjJ9mM" },
-        { titulo: "Aula 05", descricao: "Esperança", categoria: "Fé", video: "e-ORhEE9VVg" },
-        { titulo: "Aula 06", descricao: "Comunhão", categoria: "Oração", video: "kJQP7kiw5Fk" },
-        { titulo: "Aula 07", descricao: "Profecias bíblicas", categoria: "Profecias", video: "fLexgOxsZu0" },
-        { titulo: "Aula 08", descricao: "Salvação", categoria: "Fé", video: "2Vv-BfVoq4g" },
-        { titulo: "Aula 09", descricao: "Amor de Deus", categoria: "Fé", video: "OPf0YbXqDm0" },
-        { titulo: "Aula 10", descricao: "Vida espiritual", categoria: "Oração", video: "CevxZvSJLk8" },
+        { titulo: "Aula 01", descricao: "Introdução à fé", categoria: "Fé", video: "7UlUMa8dlBg" },
+        { titulo: "Aula 02", descricao: "Vida com Deus", categoria: "Fé", video: "pb6P7_xmUQs" },
+        { titulo: "Aula 03", descricao: "Oração diária", categoria: "Oração", video: "SEEy-WPicdc" },
+        { titulo: "Aula 04", descricao: "Família cristã", categoria: "Família", video: "2QuelXhYD8w" },
+        { titulo: "Aula 05", descricao: "Esperança", categoria: "Fé", video: "kQbEAjwxHXU" },
+        { titulo: "Aula 06", descricao: "Comunhão", categoria: "Oração", video: "yi08qQYUizE" },
+        { titulo: "Aula 07", descricao: "Profecias bíblicas", categoria: "Profecias", video: "7M1qS8d9a8E" },
+        { titulo: "Aula 08", descricao: "Salvação", categoria: "Fé", video: "iAAbWePVmEo" },
+        { titulo: "Aula 09", descricao: "Amor de Deus", categoria: "Fé", video: "yRp9mr9TgcA" },
+        { titulo: "Aula 10", descricao: "Vida espiritual", categoria: "Oração", video: "hwSVlpmYTWM" },
 
-        { titulo: "Aula 11", descricao: "Família e fé", categoria: "Família", video: "RgKAFK5djSk" },
-        { titulo: "Aula 12", descricao: "Propósito de vida", categoria: "Fé", video: "JGwWNGJdvx8" },
-        { titulo: "Aula 13", descricao: "Profecias finais", categoria: "Profecias", video: "09R8_2nJtjg" },
-        { titulo: "Aula 14", descricao: "Esperança futura", categoria: "Fé", video: "YQHsXMglC9A" },
-        { titulo: "Aula 15", descricao: "Confiança em Deus", categoria: "Fé", video: "pRpeEdMmmQ0" },
-        { titulo: "Aula 16", descricao: "Oração e fé", categoria: "Oração", video: "kffacxfA7G4" },
-        { titulo: "Aula 17", descricao: "Vida com Cristo", categoria: "Fé", video: "3JZ_D3ELwOQ" },
-        { titulo: "Aula 18", descricao: "Família e valores", categoria: "Família", video: "uelHwf8o7_U" },
-        { titulo: "Aula 19", descricao: "Salvação eterna", categoria: "Fé", video: "60ItHLz5WEA" },
-        { titulo: "Aula 20", descricao: "Caminho da fé", categoria: "Fé", video: "nfWlot6h_JM" },
+        { titulo: "Aula 11", descricao: "Família e fé", categoria: "Família", video: "r130BsOP1Cs" },
+        { titulo: "Aula 12", descricao: "Propósito de vida", categoria: "Fé", video: "3AFtQj-ZbXU" },
+        { titulo: "Aula 13", descricao: "Profecias finais", categoria: "Profecias", video: "EmNa2mC1REU" },
+        { titulo: "Aula 14", descricao: "Esperança futura", categoria: "Fé", video: "GU587FZB_gk" },
+        { titulo: "Aula 15", descricao: "Confiança em Deus", categoria: "Fé", video: "2Ms2z4tj1EU" },
+        { titulo: "Aula 16", descricao: "Oração e fé", categoria: "Oração", video: "c9JfsHZ5Ark" },
+        { titulo: "Aula 17", descricao: "Vida com Cristo", categoria: "Fé", video: "20XieWKvvvA" },
+        { titulo: "Aula 18", descricao: "Família e valores", categoria: "Família", video: "RvM8AvWDnSQ" },
+        { titulo: "Aula 19", descricao: "Salvação eterna", categoria: "Fé", video: "BkwPPB2tjOI" },
+        { titulo: "Aula 20", descricao: "Caminho da fé", categoria: "Fé", video: "g9B7YsUgUNM" },
 
-        { titulo: "Aula 21", descricao: "Deus é amor", categoria: "Fé", video: "34Na4j8AVgA" },
-        { titulo: "Aula 22", descricao: "Confiança total", categoria: "Fé", video: "ktvTqknDobU" },
-        { titulo: "Aula 23", descricao: "Família abençoada", categoria: "Família", video: "lp-EO5I60KA" },
-        { titulo: "Aula 24", descricao: "Vida com propósito", categoria: "Fé", video: "SlPhMPnQ58k" },
-        { titulo: "Aula 25", descricao: "Profecias atuais", categoria: "Profecias", video: "hLQl3WQQoQ0" },
-        { titulo: "Aula 26", descricao: "Esperança viva", categoria: "Fé", video: "y6120QOlsfU" },
-        { titulo: "Aula 27", descricao: "Comunhão com Deus", categoria: "Oração", video: "ktvTqknDobU" },
-        { titulo: "Aula 28", descricao: "Vida espiritual", categoria: "Oração", video: "JGwWNGJdvx8" },
-        { titulo: "Aula 29", descricao: "Família forte", categoria: "Família", video: "CevxZvSJLk8" },
-        { titulo: "Aula 30", descricao: "Fé inabalável", categoria: "Fé", video: "2Vv-BfVoq4g" }
+        { titulo: "Aula 21", descricao: "Deus é amor", categoria: "Fé", video: "Wdz8uN0DPFY" },
+        { titulo: "Aula 22", descricao: "Confiança total", categoria: "Fé", video: "NxdttzyFf2o" },
+        { titulo: "Aula 23", descricao: "Família abençoada", categoria: "Família", video: "MnBH-e_BpZQ" },
+        { titulo: "Aula 24", descricao: "Vida com propósito", categoria: "Fé", video: "Kfplvg2IX6w" },
+        { titulo: "Aula 25", descricao: "Profecias atuais", categoria: "Profecias", video: "zJqNjxb-7SI" },
+        { titulo: "Aula 26", descricao: "Esperança viva", categoria: "Fé", video: "f9VL-sdtUHg" },
+        { titulo: "Aula 27", descricao: "Comunhão com Deus", categoria: "Oração", video: "aJ39JaQeOa4" },
+        { titulo: "Aula 28", descricao: "Vida espiritual", categoria: "Oração", video: "ddnROB-Iagk" },
+        { titulo: "Aula 29", descricao: "Família forte", categoria: "Família", video: "25cPKkUP8go" },
+        { titulo: "Aula 30", descricao: "Fé inabalável", categoria: "Fé", video: "64erEGHX6tg" }
     ];
 
     const abrirAulas = document.getElementById("abrir-aulas");
@@ -479,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if(!modalPlayer || !playerVideo || !tituloVideo) return;
 
                 tituloVideo.innerText = card.dataset.titulo;
-                playerVideo.src = `https://www.youtube.com/embed/${card.dataset.video}`;
+                playerVideo.src = `https://www.youtube.com/embed/${card.dataset.video}?rel=0&modestbranding=1`;
                 modalPlayer.classList.add("ativo");
                 travarScroll();
             };

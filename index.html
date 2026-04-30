@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 
 <title>IASD Belém</title>
 <meta name="description" content="IASD Belém - Igreja Adventista do Sétimo Dia. Cultos, aulas bíblicas, eventos, pedidos de oração e contato.">
@@ -184,7 +185,12 @@ Enviar de forma anônima
     <div class="player-conteudo">
         <button class="fechar-player" id="fechar-player">&times;</button>
         <h2 id="titulo-video">Aula Bíblica</h2>
-        <iframe id="player-video" allowfullscreen></iframe>
+        <iframe
+    id="player-video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    referrerpolicy="strict-origin-when-cross-origin">
+</iframe>
     </div>
 </div>
 
