@@ -1782,3 +1782,27 @@ section:not(.banner){
         filter:none !important;
     }
 }
+
+/* =========================
+   CORREÇÃO DE ANCORAGEM DO MENU
+========================= */
+
+#historia,
+#cultos,
+#oracao,
+#aulas,
+#eventos,
+#contato{
+    scroll-margin-top:140px;
+}
+
+@media(max-width:768px){
+    #historia,
+    #cultos,
+    #oracao,
+    #aulas,
+    #eventos,
+    #contato{
+        scroll-margin-top:120px;
+    }
+}
