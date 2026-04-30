@@ -1376,294 +1376,123 @@ footer p{
 }
 
 /* =========================
-   TABLET
+   ACABAMENTO PREMIUM
 ========================= */
-@media (max-width:1024px){
-    .container{
-        width:92%;
-    }
+.aula-card,
+.evento,
+.culto,
+.historia-card,
+.oracao-card{
+    animation:aparecerSuave .6s ease;
+}
 
-    nav{
-        gap:18px;
+@keyframes aparecerSuave{
+    from{
+        opacity:0;
+        transform:translateY(25px);
     }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
 
-    nav a{
-        font-size:15px;
-    }
+.aula-card:hover,
+.evento:hover,
+.culto:hover{
+    transform:translateY(-10px) scale(1.02);
+}
 
-    .banner-text h1{
-        font-size:42px;
-    }
+.aula-thumb img{
+    transition:.4s ease;
+}
 
-    .banner-text p{
-        font-size:17px;
-    }
+.aula-card:hover .aula-thumb img{
+    transform:scale(1.08);
+}
 
-    .cultos,
-    .contato{
-        gap:20px;
-    }
+.play-icon i{
+    background:#f5c542;
+    color:#111;
+    width:62px;
+    height:62px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.modal-aulas,
+.modal-player,
+.modal-agenda,
+.modal-live{
+    backdrop-filter:blur(6px);
+}
+
+.btn-aulas,
+.btn-banner,
+.btn-mais-eventos,
+.form-oracao button,
+.btn-ver-todos,
+.btn-live{
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.btn-aulas:hover,
+.btn-banner:hover,
+.btn-mais-eventos:hover,
+.form-oracao button:hover,
+.btn-ver-todos:hover,
+.btn-live:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
 }
 
 /* =========================
-   CELULAR
+   ANIMAÇÕES PREMIUM
 ========================= */
-@media (max-width:768px){
-    .header{
-        padding:10px 0;
-    }
+.animar{
+    opacity:0;
+    transform:translateY(45px);
+    filter:blur(6px);
+    transition:opacity .8s ease, transform .8s ease, filter .8s ease;
+}
 
-    .header-container{
-        flex-direction:column;
-        gap:8px;
-    }
+.animar.ativo{
+    opacity:1;
+    transform:translateY(0);
+    filter:blur(0);
+}
 
-    .logo{
-        text-align:center;
-        align-items:center;
-    }
+.animar.zoom{
+    transform:scale(.92);
+}
 
-    .logo-iasd{
-        font-size:10px;
-    }
+.animar.zoom.ativo{
+    transform:scale(1);
+}
 
-    .logo-belem{
-        font-size:22px;
-    }
+.animar.esquerda{
+    transform:translateX(-45px);
+}
 
-    .logo small{
-        font-size:10px;
-    }
+.animar.esquerda.ativo{
+    transform:translateX(0);
+}
 
-    nav{
-        justify-content:center;
-        flex-wrap:wrap;
-        gap:10px 14px;
-    }
+.animar.direita{
+    transform:translateX(45px);
+}
 
-    nav a{
-        font-size:13px;
-    }
-
-    .link-ao-vivo{
-        padding:7px 14px;
-    }
-
-    .banner{
-        height:calc(100svh - 110px);
-        min-height:520px;
-    }
-
-    .banner-text{
-        width:92%;
-        top:52%;
-        left:50%;
-        transform:translate(-50%, -50%);
-        text-align:center;
-    }
-
-    .banner-text h1{
-        font-size:28px;
-        line-height:1.15;
-        margin-bottom:10px;
-    }
-
-    .banner-text p{
-        font-size:15px;
-        line-height:1.4;
-        margin-bottom:18px;
-    }
-
-    .btn-banner{
-        padding:10px 22px;
-        font-size:14px;
-        border-radius:25px;
-    }
-
-    section{
-        padding:70px 0;
-    }
-
-    section h2{
-        font-size:26px;
-        margin-bottom:28px;
-    }
-
-    .historia-card{
-        padding:30px 22px;
-    }
-
-    .historia-card p{
-        font-size:15px;
-        line-height:1.8;
-        text-align:left;
-    }
-
-    .cultos{
-        flex-direction:column;
-        align-items:center;
-        gap:18px;
-    }
-
-    .culto{
-        width:100%;
-        max-width:320px;
-        padding:24px 18px;
-    }
-
-    .culto h3{
-        font-size:20px;
-    }
-
-    .culto p{
-        font-size:14px;
-    }
-
-    .culto span{
-        font-size:18px;
-    }
-
-    .modal-aulas-conteudo,
-    .player-conteudo{
-        padding:30px 20px;
-    }
-
-    .aulas-controles{
-        width:100%;
-    }
-
-    .aulas-grid{
-        grid-template-columns:1fr;
-    }
-
-    .aula-card{
-        max-width:330px;
-        margin:auto;
-    }
-
-    #player-video{
-        height:230px;
-    }
-
-    .eventos{
-        grid-template-columns:1fr;
-    }
-
-    .eventos-botao-area{
-        justify-content:center;
-        padding-right:0;
-    }
-
-    .evento{
-        max-width:330px;
-        margin:auto;
-    }
-
-    .evento-img{
-        height:190px;
-    }
-
-    .evento-texto{
-        padding:16px;
-    }
-
-    .evento-texto h3{
-        font-size:18px;
-    }
-
-    .evento-texto p{
-        font-size:14px;
-        line-height:1.5;
-    }
-
-    .modal-conteudo{
-        padding:30px 20px;
-    }
-
-    .agenda-item{
-        flex-direction:column;
-        text-align:center;
-    }
-
-    .contato{
-        flex-direction:column;
-        align-items:stretch;
-        gap:22px;
-    }
-
-    .contato-info,
-    .mapa{
-        width:100%;
-        max-width:100%;
-    }
-
-    .redes-sociais{
-        justify-content:center;
-        flex-wrap:wrap;
-    }
-
-    .mapa iframe{
-        width:100%;
-        height:240px;
-        border-radius:12px;
-    }
-
-    .live-video iframe{
-        height:230px;
-    }
-
-    footer{
-        font-size:12px;
-        padding:14px 10px;
-        line-height:1.5;
-    }
+.animar.direita.ativo{
+    transform:translateX(0);
 }
 
 /* =========================
-   CELULAR PEQUENO
+   ANIMAÇÃO MODAL + VER MAIS
 ========================= */
-@media (max-width:480px){
-    .logo-belem{
-        font-size:20px;
-    }
-
-    nav a{
-        font-size:12px;
-    }
-
-    .banner{
-        min-height:480px;
-    }
-
-    .banner-text h1{
-        font-size:24px;
-    }
-
-    .banner-text p{
-        font-size:14px;
-    }
-
-    .btn-banner{
-        font-size:13px;
-        padding:9px 18px;
-    }
-
-    .culto,
-    .evento{
-        max-width:300px;
-    }
-
-    .whatsapp-float{
-        right:18px;
-        bottom:18px;
-        width:55px;
-        height:55px;
-        font-size:27px;
-    }
-}
-
-/* ANIMAÇÃO MODAL */
-
 .modal-aulas{
     opacity:0;
     transition:.25s ease;
@@ -1674,7 +1503,7 @@ footer p{
 }
 
 .modal-aulas-conteudo{
-    transform:scale(.92) translateY(20px);
+    transform:scale(.94) translateY(18px);
     opacity:0;
     transition:.35s ease;
 }
@@ -1703,60 +1532,363 @@ footer p{
     transform:translateY(-3px);
 }
 
+/* =========================
+   MENU HAMBÚRGUER
+========================= */
 .menu-toggle{
     display:none;
     background:#f5c542;
     color:#111;
     border:none;
-    width:44px;
-    height:44px;
+    width:46px;
+    height:46px;
     border-radius:50%;
-    font-size:20px;
+    font-size:21px;
     cursor:pointer;
+    flex-shrink:0;
 }
 
+/* =========================
+   RESPONSIVIDADE FLUIDA
+========================= */
+
+/* Telas médias e notebooks menores */
+@media(max-width:1200px){
+    .container{
+        width:92%;
+    }
+
+    nav{
+        gap:18px;
+    }
+
+    nav a{
+        font-size:14px;
+    }
+}
+
+/* =========================
+   RESPONSIVIDADE FINAL REAL
+========================= */
+
+.menu-toggle{
+    display:none;
+    background:#f5c542;
+    color:#111;
+    border:none;
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    font-size:22px;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+/* Notebook menor / tablet */
+@media(max-width:1024px){
+    .container{
+        width:min(92%, 1000px);
+    }
+
+    nav{
+        gap:16px;
+    }
+
+    nav a{
+        font-size:14px;
+    }
+
+    .banner-text h1{
+        font-size:clamp(32px, 5vw, 42px);
+    }
+
+    .banner-text p{
+        font-size:clamp(15px, 2vw, 17px);
+    }
+
+    .eventos{
+        grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+
+/* Mobile / tablet pequeno */
 @media(max-width:768px){
+    html,
+    body{
+        width:100%;
+        max-width:100%;
+        overflow-x:hidden;
+    }
+
+    .header{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        padding:10px 0;
+        z-index:99999;
+        overflow:visible;
+    }
+
     .header-container{
+        width:100%;
+        max-width:none;
+        padding:0 18px;
+        margin:0;
+        display:flex;
         flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+    }
+
+    .logo{
+        align-items:flex-start;
+        text-align:left;
+        min-width:0;
+        max-width:calc(100% - 70px);
+    }
+
+    .logo-iasd{
+        font-size:10px;
+    }
+
+    .logo-belem{
+        font-size:clamp(22px, 7vw, 28px);
+    }
+
+    .logo small{
+        font-size:clamp(10px, 3vw, 13px);
+        white-space:normal;
     }
 
     .menu-toggle{
-        display:flex;
+        display:flex !important;
         align-items:center;
         justify-content:center;
+        margin-left:auto;
+        margin-right:4px;
+        position:relative;
+        transform:none !important;
     }
 
     nav{
         position:absolute;
-        top:100%;
-        left:50%;
-        transform:translateX(-50%) translateY(-10px);
-        width:92%;
+        top:calc(100% + 10px);
+        left:18px;
+        right:18px;
+        width:auto;
+        max-width:none;
         background:#0d2b4d;
+        display:flex;
         flex-direction:column;
         gap:0;
-        padding:18px;
+        padding:16px;
         border-radius:18px;
-        box-shadow:0 18px 40px rgba(0,0,0,.25);
+        box-shadow:0 18px 45px rgba(0,0,0,.25);
         opacity:0;
         pointer-events:none;
-        transition:.3s;
+        transform:translateY(-10px);
+        transition:.3s ease;
     }
 
     nav.ativo{
         opacity:1;
         pointer-events:auto;
-        transform:translateX(-50%) translateY(8px);
+        transform:translateY(0);
     }
 
     nav a{
         width:100%;
         text-align:center;
         padding:13px;
+        margin:0;
         border-radius:12px;
+        font-size:15px;
     }
 
     nav a:hover{
         background:rgba(255,255,255,.08);
+    }
+
+    .banner{
+        height:100svh;
+        min-height:560px;
+    }
+
+    .banner-text{
+        width:92%;
+        max-width:520px;
+    }
+
+    .banner-text h1{
+        font-size:clamp(30px, 9vw, 44px);
+        line-height:1.1;
+    }
+
+    .banner-text p{
+        font-size:clamp(15px, 4vw, 18px);
+        line-height:1.4;
+    }
+
+    section{
+        padding:75px 0;
+    }
+
+    section h2{
+        font-size:clamp(26px, 7vw, 34px);
+        margin-bottom:32px;
+    }
+
+    .historia-card,
+    .oracao-card,
+    .aulas-chamada{
+        padding:34px 22px;
+        border-radius:22px;
+    }
+
+    .historia-card p{
+        font-size:15px;
+        text-align:left;
+    }
+
+    .cultos{
+        flex-direction:column;
+        align-items:center;
+        gap:20px;
+    }
+
+    .culto{
+        width:100%;
+        max-width:520px;
+        padding:30px 22px;
+    }
+
+    .aulas-grid{
+        grid-template-columns:1fr;
+    }
+
+    .aula-card{
+        width:100%;
+        max-width:520px;
+        margin:auto;
+    }
+
+    .eventos{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:24px;
+        width:100%;
+    }
+
+    .evento{
+        width:100%;
+        max-width:520px;
+        margin:0 auto;
+        border-radius:24px;
+    }
+
+    .evento-img{
+        height:clamp(210px, 50vw, 280px);
+    }
+
+    .evento-texto{
+        padding:22px;
+    }
+
+    .evento-texto h3{
+        font-size:22px;
+        line-height:1.25;
+    }
+
+    .evento-texto p{
+        font-size:15px;
+        line-height:1.6;
+    }
+
+    .eventos-botao-area{
+        justify-content:center;
+        padding:0;
+        margin-top:32px;
+    }
+
+    .btn-mais-eventos{
+        width:auto;
+        padding:14px 28px;
+    }
+
+    .contato{
+        flex-direction:column;
+        align-items:stretch;
+        gap:28px;
+    }
+
+    .contato-info,
+    .mapa{
+        width:100%;
+        max-width:100%;
+    }
+
+    .mapa iframe{
+        height:260px;
+    }
+
+    .modal-aulas-conteudo,
+    .modal-conteudo,
+    .player-conteudo{
+        width:calc(100vw - 28px);
+        max-height:calc(100svh - 28px);
+        padding:34px 20px;
+        border-radius:22px;
+    }
+
+    #player-video{
+        height:260px;
+    }
+
+    .whatsapp-float{
+        position:fixed !important;
+        right:16px !important;
+        bottom:16px !important;
+        width:56px !important;
+        height:56px !important;
+        z-index:99998 !important;
+        transform:none !important;
+    }
+}
+
+/* Celular pequeno */
+@media(max-width:480px){
+    .header-container{
+        padding:0 14px;
+    }
+
+    .menu-toggle{
+        width:44px;
+        height:44px;
+        font-size:21px;
+        margin-right:0;
+    }
+
+    .banner{
+        min-height:520px;
+    }
+
+    .btn-banner{
+        padding:10px 22px;
+        font-size:14px;
+    }
+
+    .evento,
+    .culto,
+    .aula-card{
+        max-width:100%;
+    }
+
+    .whatsapp-float{
+        right:14px !important;
+        bottom:14px !important;
+        width:54px !important;
+        height:54px !important;
     }
 }
