@@ -1261,20 +1261,37 @@ footer p{
 }
 
 /* =========================
-   ACABAMENTO PREMIUM
+   PERFORMANCE / IMAGENS
+========================= */
+img,
+iframe{
+    max-width:100%;
+}
+
+img{
+    height:auto;
+}
+
+section:not(.banner){
+    content-visibility:auto;
+    contain-intrinsic-size:1px 700px;
+}
+
+/* =========================
+   ACABAMENTO PREMIUM OTIMIZADO
 ========================= */
 .aula-card,
 .evento,
 .culto,
 .historia-card,
 .oracao-card{
-    animation: aparecerSuave .6s ease;
+    animation:aparecerSuave .55s ease both;
 }
 
 @keyframes aparecerSuave{
     from{
         opacity:0;
-        transform:translateY(25px);
+        transform:translateY(18px);
     }
     to{
         opacity:1;
@@ -1289,7 +1306,7 @@ footer p{
 }
 
 .aula-thumb img{
-    transition:.4s ease;
+    transition:transform .35s ease;
 }
 
 .aula-card:hover .aula-thumb img{
@@ -1321,7 +1338,8 @@ footer p{
 .btn-mais-eventos,
 .form-oracao button,
 .btn-ver-todos,
-.btn-live{
+.btn-live,
+.btn-ver-mais{
     box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
@@ -1330,19 +1348,21 @@ footer p{
 .btn-mais-eventos:hover,
 .form-oracao button:hover,
 .btn-ver-todos:hover,
-.btn-live:hover{
+.btn-live:hover,
+.btn-ver-mais:hover{
     transform:translateY(-4px);
     box-shadow:0 15px 35px rgba(0,0,0,.2);
 }
 
 /* =========================
-   ANIMAÇÕES PREMIUM
+   ANIMAÇÕES PREMIUM OTIMIZADAS
 ========================= */
 .animar{
     opacity:0;
-    transform:translateY(45px);
-    filter:blur(6px);
-    transition:opacity .8s ease, transform .8s ease, filter .8s ease;
+    transform:translateY(35px);
+    filter:blur(5px);
+    transition:opacity .7s ease, transform .7s ease, filter .7s ease;
+    will-change:opacity, transform;
 }
 
 .animar.ativo{
@@ -1351,16 +1371,8 @@ footer p{
     filter:blur(0);
 }
 
-.animar.zoom{
-    transform:scale(.92);
-}
-
-.animar.zoom.ativo{
-    transform:scale(1);
-}
-
 .animar.esquerda{
-    transform:translateX(-45px);
+    transform:translateX(-35px);
 }
 
 .animar.esquerda.ativo{
@@ -1368,134 +1380,25 @@ footer p{
 }
 
 .animar.direita{
-    transform:translateX(45px);
+    transform:translateX(35px);
 }
 
 .animar.direita.ativo{
     transform:translateX(0);
 }
 
-/* =========================
-   ACABAMENTO PREMIUM
-========================= */
-.aula-card,
-.evento,
-.culto,
-.historia-card,
-.oracao-card{
-    animation:aparecerSuave .6s ease;
-}
-
-@keyframes aparecerSuave{
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.aula-card:hover,
-.evento:hover,
-.culto:hover{
-    transform:translateY(-10px) scale(1.02);
-}
-
-.aula-thumb img{
-    transition:.4s ease;
-}
-
-.aula-card:hover .aula-thumb img{
-    transform:scale(1.08);
-}
-
-.play-icon i{
-    background:#f5c542;
-    color:#111;
-    width:62px;
-    height:62px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:24px;
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
-}
-
-.modal-aulas,
-.modal-player,
-.modal-agenda,
-.modal-live{
-    backdrop-filter:blur(6px);
-}
-
-.btn-aulas,
-.btn-banner,
-.btn-mais-eventos,
-.form-oracao button,
-.btn-ver-todos,
-.btn-live{
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-}
-
-.btn-aulas:hover,
-.btn-banner:hover,
-.btn-mais-eventos:hover,
-.form-oracao button:hover,
-.btn-ver-todos:hover,
-.btn-live:hover{
-    transform:translateY(-4px);
-    box-shadow:0 15px 35px rgba(0,0,0,.2);
-}
-
-/* =========================
-   ANIMAÇÕES PREMIUM
-========================= */
-.animar{
-    opacity:0;
-    transform:translateY(45px);
-    filter:blur(6px);
-    transition:opacity .8s ease, transform .8s ease, filter .8s ease;
-}
-
-.animar.ativo{
-    opacity:1;
-    transform:translateY(0);
-    filter:blur(0);
-}
-
 .animar.zoom{
-    transform:scale(.92);
+    transform:scale(.94);
 }
 
 .animar.zoom.ativo{
     transform:scale(1);
 }
 
-.animar.esquerda{
-    transform:translateX(-45px);
-}
-
-.animar.esquerda.ativo{
-    transform:translateX(0);
-}
-
-.animar.direita{
-    transform:translateX(45px);
-}
-
-.animar.direita.ativo{
-    transform:translateX(0);
-}
-
-/* =========================
-   ANIMAÇÃO MODAL + VER MAIS
-========================= */
+/* Modal mais leve */
 .modal-aulas{
     opacity:0;
-    transition:.25s ease;
+    transition:opacity .25s ease;
 }
 
 .modal-aulas.ativo{
@@ -1503,9 +1406,9 @@ footer p{
 }
 
 .modal-aulas-conteudo{
-    transform:scale(.94) translateY(18px);
+    transform:scale(.96) translateY(16px);
     opacity:0;
-    transition:.35s ease;
+    transition:transform .3s ease, opacity .3s ease;
 }
 
 .modal-aulas.ativo .modal-aulas-conteudo{
@@ -1529,7 +1432,6 @@ footer p{
 .btn-ver-mais:hover{
     background:#f5c542;
     color:black;
-    transform:translateY(-3px);
 }
 
 /* =========================
@@ -1543,16 +1445,14 @@ footer p{
     width:46px;
     height:46px;
     border-radius:50%;
-    font-size:21px;
+    font-size:22px;
     cursor:pointer;
     flex-shrink:0;
 }
 
 /* =========================
-   RESPONSIVIDADE FLUIDA
+   RESPONSIVIDADE FINAL REAL
 ========================= */
-
-/* Telas médias e notebooks menores */
 @media(max-width:1200px){
     .container{
         width:92%;
@@ -1567,24 +1467,6 @@ footer p{
     }
 }
 
-/* =========================
-   RESPONSIVIDADE FINAL REAL
-========================= */
-
-.menu-toggle{
-    display:none;
-    background:#f5c542;
-    color:#111;
-    border:none;
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    font-size:22px;
-    cursor:pointer;
-    flex-shrink:0;
-}
-
-/* Notebook menor / tablet */
 @media(max-width:1024px){
     .container{
         width:min(92%, 1000px);
@@ -1592,10 +1474,6 @@ footer p{
 
     nav{
         gap:16px;
-    }
-
-    nav a{
-        font-size:14px;
     }
 
     .banner-text h1{
@@ -1611,7 +1489,6 @@ footer p{
     }
 }
 
-/* Mobile / tablet pequeno */
 @media(max-width:768px){
     html,
     body{
@@ -1857,7 +1734,6 @@ footer p{
     }
 }
 
-/* Celular pequeno */
 @media(max-width:480px){
     .header-container{
         padding:0 14px;
@@ -1890,5 +1766,19 @@ footer p{
         bottom:14px !important;
         width:54px !important;
         height:54px !important;
+    }
+}
+
+@media(prefers-reduced-motion: reduce){
+    *{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+    }
+
+    .animar{
+        opacity:1 !important;
+        transform:none !important;
+        filter:none !important;
     }
 }

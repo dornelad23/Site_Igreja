@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>IASD Belém</title>
+<meta name="description" content="IASD Belém - Igreja Adventista do Sétimo Dia. Cultos, aulas bíblicas, eventos, pedidos de oração e contato.">
+<meta name="theme-color" content="#0d2b4d">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://img.youtube.com">
+<link rel="preload" as="image" href="view/img/img1.png" fetchpriority="high">
 
 <link rel="stylesheet" href="css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -47,7 +55,7 @@
 <p class="live-status">Assista a transmissão ao vivo ou o último culto disponível.</p>
 
 <div class="live-video" id="live-container">
-<iframe id="live-frame" src="https://www.youtube.com/embed/live_stream?channel=UC0RqFUeh2gCIkpNCkyPSBig" allowfullscreen></iframe>
+<iframe id="live-frame" data-src="https://www.youtube.com/embed/live_stream?channel=UC0RqFUeh2gCIkpNCkyPSBig" title="Transmissão ao vivo da IASD Belém" loading="lazy" allowfullscreen></iframe>
 
 <div class="live-fallback" id="live-fallback">
 <p>Não foi possível carregar a transmissão aqui.</p>
@@ -62,8 +70,8 @@
 <div class="overlay"></div>
 
 <div class="slides">
-<img src="view/img/img1.png" class="slide active" alt="IASD Belém">
-<img src="view/img/img2.png" class="slide" alt="Igreja Adventista Belém">
+<img src="view/img/img1.png" class="slide active" alt="IASD Belém" fetchpriority="high">
+<img src="view/img/img2.png" class="slide" alt="Igreja Adventista Belém" loading="lazy">
 </div>
 
 <div class="banner-text">
@@ -249,7 +257,7 @@ Enviar de forma anônima
 </div>
 
 <div class="mapa animar direita">
-<iframe src="https://www.google.com/maps?q=Igreja+Adventista+do+Sétimo+Dia+Belém+São+Paulo&output=embed"></iframe>
+<iframe src="https://www.google.com/maps?q=Igreja+Adventista+do+Sétimo+Dia+Belém+São+Paulo&output=embed" title="Mapa da IASD Belém" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 </div>
 </div>
@@ -265,6 +273,6 @@ Enviar de forma anônima
 <i class="fab fa-whatsapp"></i>
 </a>
 
-<script src="js/script.js"></script>
+<script src="js/script.js" defer></script>
 </body>
 </html>
