@@ -4,6 +4,31 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================
+       FUNÇÕES GERAIS
+    ========================= */
+    function travarScroll(){
+        document.documentElement.classList.add("modal-aberto");
+        document.body.classList.add("modal-aberto");
+    }
+
+    function liberarScroll(){
+        document.documentElement.classList.remove("modal-aberto");
+        document.body.classList.remove("modal-aberto");
+    }
+
+    function fecharModalComAnimacao(modal, callback){
+        if(!modal) return;
+
+        modal.classList.remove("ativo");
+
+        setTimeout(() => {
+            if(typeof callback === "function"){
+                callback();
+            }
+        }, 280);
+    }
+
+    /* =========================
        SLIDER DO BANNER
     ========================= */
     const slides = document.querySelectorAll(".slide");
@@ -30,19 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if(!header) return;
         header.classList.toggle("scroll", window.scrollY > 20);
     }, { passive:true });
-
-    /* =========================
-       CONTROLE DE SCROLL DOS MODAIS
-    ========================= */
-    function travarScroll(){
-        document.documentElement.classList.add("modal-aberto");
-        document.body.classList.add("modal-aberto");
-    }
-
-    function liberarScroll(){
-        document.documentElement.classList.remove("modal-aberto");
-        document.body.classList.remove("modal-aberto");
-    }
 
     /* =========================
        MENU MOBILE
@@ -308,16 +320,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(fecharAgenda && modalAgenda){
         fecharAgenda.addEventListener("click", () => {
-            modalAgenda.classList.remove("ativo");
-            liberarScroll();
+            fecharModalComAnimacao(modalAgenda, liberarScroll);
         });
     }
 
     if(modalAgenda){
         modalAgenda.addEventListener("click", (e) => {
             if(e.target === modalAgenda){
-                modalAgenda.classList.remove("ativo");
-                liberarScroll();
+                fecharModalComAnimacao(modalAgenda, liberarScroll);
             }
         });
     }
@@ -339,55 +349,80 @@ document.addEventListener("DOMContentLoaded", () => {
        MODAL AO VIVO
     ========================= */
     const abrirLive = document.getElementById("abrir-live");
+    const abrirLiveBanner = document.getElementById("abrir-live-banner");
     const fecharLive = document.getElementById("fechar-live");
     const modalLive = document.getElementById("modal-live");
     const iframeLive = document.getElementById("live-frame");
-    const fallbackLive = document.getElementById("live-fallback");
 
-    function ativarFallbackLive(){
-        if(iframeLive){
-            iframeLive.style.display = "none";
-        }
+    let timerErroLive = null;
 
-        if(fallbackLive){
-            fallbackLive.style.display = "block";
-        }
+    function abrirModalLive(e){
+    if(e) e.preventDefault();
+
+    clearTimeout(timerErroLive);
+
+    if(modalLive){
+        modalLive.classList.remove("erro");
+        modalLive.classList.add("ativo");
+        travarScroll();
     }
 
-    if(abrirLive && modalLive){
-        abrirLive.addEventListener("click", (e) => {
-            e.preventDefault();
+    if(iframeLive && iframeLive.dataset.src){
+        iframeLive.src = iframeLive.dataset.src;
+    }
 
-            modalLive.classList.add("ativo");
-            travarScroll();
+    timerErroLive = setTimeout(() => {
+        if(modalLive && modalLive.classList.contains("ativo")){
+            modalLive.classList.add("erro");
 
-            setTimeout(() => {
-                try{
-                    if(!iframeLive || !iframeLive.contentWindow || iframeLive.contentWindow.length === 0){
-                        ativarFallbackLive();
-                    }
-                }catch(e){
-                    ativarFallbackLive();
-                }
-            }, 3000);
-        });
+            if(iframeLive){
+                iframeLive.src = "";
+            }
+        }
+    }, 6000);
+}
+
+    if(abrirLive){
+        abrirLive.addEventListener("click", abrirModalLive);
+    }
+
+    if(abrirLiveBanner){
+        abrirLiveBanner.addEventListener("click", abrirModalLive);
     }
 
     if(fecharLive && modalLive){
-        fecharLive.addEventListener("click", () => {
-            modalLive.classList.remove("ativo");
+    fecharLive.addEventListener("click", () => {
+        clearTimeout(timerErroLive);
+
+        fecharModalComAnimacao(modalLive, () => {
+            modalLive.classList.remove("erro");
+
+            if(iframeLive){
+                iframeLive.src = "";
+            }
+
             liberarScroll();
         });
-    }
+    });
+}
 
     if(modalLive){
-        modalLive.addEventListener("click", (e) => {
-            if(e.target === modalLive){
-                modalLive.classList.remove("ativo");
+    modalLive.addEventListener("click", (e) => {
+        if(e.target === modalLive){
+            clearTimeout(timerErroLive);
+
+            fecharModalComAnimacao(modalLive, () => {
+                modalLive.classList.remove("erro");
+
+                if(iframeLive){
+                    iframeLive.src = "";
+                }
+
                 liberarScroll();
-            }
-        });
-    }
+            });
+        }
+    });
+}
 
     /* =========================
        AULAS BÍBLICAS
@@ -557,16 +592,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(fecharAulas && modalAulas){
         fecharAulas.addEventListener("click", () => {
-            modalAulas.classList.remove("ativo");
-            liberarScroll();
+            fecharModalComAnimacao(modalAulas, liberarScroll);
         });
     }
 
     if(modalAulas){
         modalAulas.addEventListener("click", (e) => {
             if(e.target === modalAulas){
-                modalAulas.classList.remove("ativo");
-                liberarScroll();
+                fecharModalComAnimacao(modalAulas, liberarScroll);
             }
         });
     }
@@ -596,23 +629,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(fecharPlayer && modalPlayer){
         fecharPlayer.addEventListener("click", () => {
-            modalPlayer.classList.remove("ativo");
-
-            if(playerVideo){
-                playerVideo.src = "";
-            }
-
-            if(!modalAulas || !modalAulas.classList.contains("ativo")){
-                liberarScroll();
-            }
-        });
-    }
-
-    if(modalPlayer){
-        modalPlayer.addEventListener("click", (e) => {
-            if(e.target === modalPlayer){
-                modalPlayer.classList.remove("ativo");
-
+            fecharModalComAnimacao(modalPlayer, () => {
                 if(playerVideo){
                     playerVideo.src = "";
                 }
@@ -620,6 +637,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 if(!modalAulas || !modalAulas.classList.contains("ativo")){
                     liberarScroll();
                 }
+            });
+        });
+    }
+
+    if(modalPlayer){
+        modalPlayer.addEventListener("click", (e) => {
+            if(e.target === modalPlayer){
+                fecharModalComAnimacao(modalPlayer, () => {
+                    if(playerVideo){
+                        playerVideo.src = "";
+                    }
+
+                    if(!modalAulas || !modalAulas.classList.contains("ativo")){
+                        liberarScroll();
+                    }
+                });
             }
         });
     }
@@ -635,6 +668,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if(modalLive){
                 modalLive.classList.remove("ativo");
+
+                if(iframeLive){
+                    iframeLive.src = "";
+                }
             }
 
             if(modalAulas){
@@ -643,10 +680,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if(modalPlayer){
                 modalPlayer.classList.remove("ativo");
-            }
 
-            if(playerVideo){
-                playerVideo.src = "";
+                if(playerVideo){
+                    playerVideo.src = "";
+                }
             }
 
             liberarScroll();

@@ -37,33 +37,41 @@
 
 <nav id="menu">
     <a href="#">Início</a>
-    <a href="#historia">Nossa História</a>
+    <a href="#historia">Sobre nós</a>
     <a href="#cultos">Cultos</a>
+    <a href="#Pedidos">Pedidos</a>
     <a href="#aulas">Aulas</a>
     <a href="#eventos">Eventos</a>
     <a href="#contato">Contato</a>
-    <a href="#" id="abrir-live" class="link-ao-vivo">Ao Vivo</a>
 </nav>
 </div>
 </header>
 
 <!-- MODAL AO VIVO -->
 <div class="modal-live" id="modal-live">
-<div class="live-conteudo">
-<button class="fechar-live" id="fechar-live">&times;</button>
-<span class="live-badge">🔴 AO VIVO / ÚLTIMO CULTO</span>
-<h2>Transmissão da IASD Belém</h2>
-<p class="live-status">Assista a transmissão ao vivo ou o último culto disponível.</p>
+    <div class="live-conteudo">
+        <button class="fechar-live" id="fechar-live">&times;</button>
 
-<div class="live-video" id="live-container">
-<iframe id="live-frame" data-src="https://www.youtube.com/embed/live_stream?channel=UC0RqFUeh2gCIkpNCkyPSBig" title="Transmissão ao vivo da IASD Belém" loading="lazy" allowfullscreen></iframe>
+        <span class="live-badge">🔴 AO VIVO / ÚLTIMO CULTO</span>
 
-<div class="live-fallback" id="live-fallback">
-<p>Não foi possível carregar a transmissão aqui.</p>
-<a href="https://www.youtube.com/@iasdbelemsp/live" target="_blank" class="btn-live">Assistir no YouTube</a>
-</div>
-</div>
-</div>
+        <h2>Transmissão da IASD Belém</h2>
+        <p class="live-status">Assista a transmissão ao vivo ou o último culto disponível.</p>
+
+        <div class="live-video">
+            <iframe 
+                id="live-frame"
+                src=""
+                data-src="https://www.youtube.com/embed/7UlUMa8dlBg?rel=0&modestbranding=1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+        </div>
+
+        <a href="https://www.youtube.com/@iasdbelemsp/live" target="_blank" class="btn-live">
+            Abrir no YouTube
+        </a>
+    </div>
 </div>
 
 <!-- BANNER -->
@@ -78,7 +86,7 @@
 <div class="banner-text">
 <h1 class="animar">IASD Belém</h1>
 <p class="animar">Uma igreja para todos. Um lugar de esperança.</p>
-<a href="#historia" class="btn-banner animar">Saiba Mais</a>
+<a href="#" id="abrir-live-banner" class="btn-banner animar">Transmissão ao vivo</a>
 </div>
 </section>
 
@@ -121,7 +129,7 @@
 </section>
 
 <!-- PEDIDOS DE ORAÇÃO -->
-<section id="oracao" class="animar">
+<section id="Pedidos" class="animar">
 <div class="container">
 <div class="oracao-card animar zoom">
 <div class="oracao-texto">
@@ -241,7 +249,11 @@ Enviar de forma anônima
 <i class="fa-solid fa-location-dot"></i>
 <div>
 <h3>Endereço</h3>
-<p>Rua Exemplo, 123 - Belém<br>São Paulo - SP</p>
+<p>
+R. Martim Afonso, 152 – Belenzinho<br>
+São Paulo – SP, 03057-050<br>
+Brasil
+</p>
 </div>
 </div>
 
