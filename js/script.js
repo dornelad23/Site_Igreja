@@ -1,6 +1,7 @@
-/* =========================
-   INIT
-========================= */
+/* =========================================================
+   JS FINAL ORGANIZADO - IASD BELÉM
+========================================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================
@@ -143,207 +144,327 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* =========================
-       EVENTOS
-    ========================= */
-    const eventos = [
-        {
-            titulo: "Semana Jovem",
-            descricao: "Programação especial com louvor, mensagens e comunhão.",
-            data: "2026-07-20",
-            horario: "19:30",
-            imagem: "view/img/img3.jpeg",
-            tipo: "Jovens"
-        },
-        {
-            titulo: "Ação Solidária",
-            descricao: "Projeto social voltado para ajudar a comunidade local.",
-            data: "2026-08-05",
-            horario: "09:00",
-            imagem: "view/img/img2.png",
-            tipo: "Ação Social"
-        },
-        {
-            titulo: "Culto Especial de Gratidão",
-            descricao: "Momento especial de louvor, oração e agradecimento.",
-            data: "2026-08-18",
-            horario: "20:00",
-            imagem: "view/img/img1.png",
-            tipo: "Culto"
-        }
-    ];
+/* =========================
+   EVENTOS
+========================= */
 
-    const listaHome = document.getElementById("lista-eventos-home");
-    const agendaCompleta = document.getElementById("agenda-completa");
-    const modalAgenda = document.getElementById("modal-agenda");
-    const abrirAgenda = document.getElementById("abrir-agenda");
-    const fecharAgenda = document.getElementById("fechar-agenda");
-    const filtros = document.querySelectorAll(".filtro");
+const eventos = [
+    {
+        titulo: "Culto Jovem",
+        descricao: "Programação especial com louvor, mensagem e comunhão entre os jovens.",
+        data: "2027-05-23",
+        horario: "19:30",
+        imagem: "view/img/img1.png",
+        tipo: "Jovens"
+    },
 
-    let filtroAtual = "Todos";
+    {
+        titulo: "Semana de Oração",
+        descricao: "Encontros especiais de oração, reflexão bíblica e fortalecimento espiritual.",
+        data: "2027-05-28",
+        horario: "20:00",
+        imagem: "view/img/img2.png",
+        tipo: "Culto"
+    },
 
-    function formatarData(dataTexto){
-        const data = new Date(dataTexto + "T00:00:00");
+    {
+        titulo: "Ação Solidária",
+        descricao: "Projeto social voltado para ajudar famílias e pessoas da comunidade.",
+        data: "2027-06-08",
+        horario: "09:00",
+        imagem: "view/img/img3.jpeg",
+        tipo: "Ação Social"
+    },
 
-        const dia = String(data.getDate()).padStart(2, "0");
-        const mes = data
-            .toLocaleDateString("pt-BR", { month: "short" })
-            .replace(".", "")
-            .toUpperCase();
+    {
+        titulo: "Culto Especial de Gratidão",
+        descricao: "Momento especial de louvor, oração e agradecimento a Deus.",
+        data: "2027-06-15",
+        horario: "19:30",
+        imagem: "view/img/img1.png",
+        tipo: "Culto"
+    },
 
-        return { dia, mes };
+    {
+        titulo: "Encontro de Famílias",
+        descricao: "Programa especial com mensagem, oração e comunhão para as famílias.",
+        data: "2027-06-22",
+        horario: "18:00",
+        imagem: "view/img/img2.png",
+        tipo: "Família"
     }
+];
 
-    function pegarEventosFuturos(){
-        const hoje = new Date();
-        hoje.setHours(0, 0, 0, 0);
+const listaHome = document.getElementById("lista-eventos-home");
+const agendaCompleta = document.getElementById("agenda-completa");
+const modalAgenda = document.getElementById("modal-agenda");
+const abrirAgenda = document.getElementById("abrir-agenda");
+const fecharAgenda = document.getElementById("fechar-agenda");
+const filtros = document.querySelectorAll(".filtro");
 
-        return eventos
-            .filter(evento => new Date(evento.data + "T00:00:00") >= hoje)
-            .sort((a, b) => new Date(a.data) - new Date(b.data));
-    }
+let filtroAtual = "Todos";
 
-    function carregarEventosHome(){
-        if(!listaHome) return;
+function formatarData(dataTexto){
 
-        const eventosFuturos = pegarEventosFuturos();
-        listaHome.innerHTML = "";
+    const data = new Date(dataTexto + "T00:00:00");
 
-        eventosFuturos.slice(0, 3).forEach((evento, index) => {
-            const dataFormatada = formatarData(evento.data);
+    const dia = String(data.getDate()).padStart(2, "0");
 
-            listaHome.innerHTML += `
-                <div class="evento">
-                    <div class="evento-img">
-                        <img src="${evento.imagem}" alt="${evento.titulo}" loading="lazy">
-                        <span class="evento-data">${dataFormatada.dia} ${dataFormatada.mes}</span>
-                    </div>
+    const mes = data
+        .toLocaleDateString("pt-BR", {
+            month: "short"
+        })
+        .replace(".", "")
+        .toUpperCase();
 
-                    <div class="evento-texto">
-                        ${index === 0 ? '<span class="tag-proximo">Próximo evento</span>' : ''}
-                        <h3>${evento.titulo}</h3>
-                        <p>${evento.descricao}</p>
-                        <div class="evento-horario">${evento.horario}</div>
-                    </div>
+    return {
+        dia,
+        mes
+    };
+}
+
+function pegarEventosFuturos(){
+
+    const hoje = new Date();
+    hoje.setHours(0,0,0,0);
+
+    return eventos
+        .filter(evento =>
+            new Date(evento.data + "T00:00:00") >= hoje
+        )
+        .sort((a,b)=>
+            new Date(a.data) - new Date(b.data)
+        );
+}
+
+function carregarEventosHome(){
+
+    if(!listaHome) return;
+
+    const eventosFuturos = pegarEventosFuturos();
+
+    listaHome.innerHTML = "";
+
+    eventosFuturos
+        .slice(0,3)
+        .forEach((evento,index)=>{
+
+        const dataFormatada =
+            formatarData(evento.data);
+
+        listaHome.innerHTML += `
+            <div class="evento">
+
+                <div class="evento-img">
+
+                    <img
+                        src="${evento.imagem}"
+                        alt="${evento.titulo}"
+                        loading="lazy"
+                    >
+
+                    <span class="evento-data">
+                        ${dataFormatada.dia}
+                        ${dataFormatada.mes}
+                    </span>
+
                 </div>
-            `;
-        });
-    }
 
-    function carregarAgenda(){
-        if(!agendaCompleta) return;
+                <div class="evento-texto">
 
-        let eventosFiltrados = pegarEventosFuturos();
-
-        if(filtroAtual !== "Todos"){
-            eventosFiltrados = eventosFiltrados.filter(evento => evento.tipo === filtroAtual);
-        }
-
-        agendaCompleta.innerHTML = "";
-
-        if(eventosFiltrados.length === 0){
-            agendaCompleta.innerHTML = `
-                <div class="sem-eventos">
-                    <div class="icone-calendario">
-                        <i class="fa-regular fa-calendar-xmark"></i>
-                    </div>
-
-                    <h3>Nenhum evento encontrado</h3>
-                    <p>No momento não há eventos para essa categoria.</p>
-
-                    <button class="btn-ver-todos" id="btn-ver-todos">
-                        Ver todos os eventos
-                    </button>
-                </div>
-            `;
-
-            const btnVerTodos = document.getElementById("btn-ver-todos");
-
-            if(btnVerTodos){
-                btnVerTodos.addEventListener("click", () => {
-                    filtroAtual = "Todos";
-
-                    filtros.forEach(btn => btn.classList.remove("ativo"));
-
-                    const filtroTodos = document.querySelector('.filtro[data-filtro="Todos"]');
-
-                    if(filtroTodos){
-                        filtroTodos.classList.add("ativo");
+                    ${
+                        index === 0
+                        ? `
+                        <span class="tag-proximo">
+                            Próximo evento
+                        </span>
+                        `
+                        : ""
                     }
 
-                    carregarAgenda();
-                });
-            }
+                    <h3>${evento.titulo}</h3>
 
-            return;
+                    <p>
+                        ${evento.descricao}
+                    </p>
+
+                    <div class="evento-horario">
+                        ${evento.horario}
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+    });
+}
+
+function carregarAgenda(){
+
+    if(!agendaCompleta) return;
+
+    let eventosFiltrados =
+        pegarEventosFuturos();
+
+    if(filtroAtual !== "Todos"){
+
+        eventosFiltrados =
+            eventosFiltrados.filter(
+                evento =>
+                evento.tipo === filtroAtual
+            );
+    }
+
+    agendaCompleta.innerHTML = "";
+
+    if(eventosFiltrados.length === 0){
+
+        agendaCompleta.innerHTML = `
+            <div class="sem-eventos">
+
+                <div class="icone-calendario">
+                    <i class="fa-regular fa-calendar-xmark"></i>
+                </div>
+
+                <h3>
+                    Nenhum evento encontrado
+                </h3>
+
+                <p>
+                    No momento não há eventos para essa categoria.
+                </p>
+
+            </div>
+        `;
+
+        return;
+    }
+
+    eventosFiltrados.forEach((evento,index)=>{
+
+        const dataFormatada =
+            formatarData(evento.data);
+
+        agendaCompleta.innerHTML += `
+            <div class="agenda-item">
+
+                <div class="agenda-data">
+
+                    <span>
+                        ${dataFormatada.dia}
+                    </span>
+
+                    ${dataFormatada.mes}
+
+                </div>
+
+                <div class="agenda-info">
+
+                    ${
+                        index === 0
+                        ? `
+                        <span class="tag-proximo">
+                            Próximo evento
+                        </span>
+                        `
+                        : ""
+                    }
+
+                    <h3>
+                        ${evento.titulo}
+                    </h3>
+
+                    <p>
+                        ${evento.descricao}
+                    </p>
+
+                    <p>
+                        <strong>Horário:</strong>
+                        ${evento.horario}
+                    </p>
+
+                    <p>
+                        <strong>Categoria:</strong>
+                        ${evento.tipo}
+                    </p>
+
+                </div>
+
+            </div>
+        `;
+    });
+}
+
+if(abrirAgenda && modalAgenda){
+
+    abrirAgenda.addEventListener("click",()=>{
+
+        filtroAtual = "Todos";
+
+        filtros.forEach(btn=>{
+            btn.classList.remove("ativo");
+        });
+
+        const filtroTodos =
+            document.querySelector(
+                '.filtro[data-filtro="Todos"]'
+            );
+
+        if(filtroTodos){
+            filtroTodos.classList.add("ativo");
         }
 
-        eventosFiltrados.forEach((evento, index) => {
-            const dataFormatada = formatarData(evento.data);
+        modalAgenda.classList.add("ativo");
 
-            agendaCompleta.innerHTML += `
-                <div class="agenda-item">
-                    <div class="agenda-data">
-                        <span>${dataFormatada.dia}</span>
-                        ${dataFormatada.mes}
-                    </div>
+        travarScroll();
 
-                    <div class="agenda-info">
-                        ${index === 0 ? '<span class="tag-proximo">Próximo evento</span>' : ''}
-                        <h3>${evento.titulo}</h3>
-                        <p>${evento.descricao}</p>
-                        <p><strong>Horário:</strong> ${evento.horario}</p>
-                        <p><strong>Categoria:</strong> ${evento.tipo}</p>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    if(abrirAgenda && modalAgenda){
-        abrirAgenda.addEventListener("click", () => {
-            filtroAtual = "Todos";
-
-            filtros.forEach(btn => btn.classList.remove("ativo"));
-
-            const filtroTodos = document.querySelector('.filtro[data-filtro="Todos"]');
-
-            if(filtroTodos){
-                filtroTodos.classList.add("ativo");
-            }
-
-            modalAgenda.classList.add("ativo");
-            travarScroll();
-            carregarAgenda();
-        });
-    }
-
-    if(fecharAgenda && modalAgenda){
-        fecharAgenda.addEventListener("click", () => {
-            fecharModalComAnimacao(modalAgenda, liberarScroll);
-        });
-    }
-
-    if(modalAgenda){
-        modalAgenda.addEventListener("click", (e) => {
-            if(e.target === modalAgenda){
-                fecharModalComAnimacao(modalAgenda, liberarScroll);
-            }
-        });
-    }
-
-    filtros.forEach(btn => {
-        btn.addEventListener("click", () => {
-            filtros.forEach(item => item.classList.remove("ativo"));
-
-            btn.classList.add("ativo");
-            filtroAtual = btn.dataset.filtro;
-
-            carregarAgenda();
-        });
+        carregarAgenda();
     });
+}
 
-    carregarEventosHome();
+if(fecharAgenda && modalAgenda){
+
+    fecharAgenda.addEventListener("click",()=>{
+
+        fecharModalComAnimacao(
+            modalAgenda,
+            liberarScroll
+        );
+    });
+}
+
+if(modalAgenda){
+
+    modalAgenda.addEventListener("click",(e)=>{
+
+        if(e.target === modalAgenda){
+
+            fecharModalComAnimacao(
+                modalAgenda,
+                liberarScroll
+            );
+        }
+    });
+}
+
+filtros.forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+        filtros.forEach(item=>{
+            item.classList.remove("ativo");
+        });
+
+        btn.classList.add("ativo");
+
+        filtroAtual =
+            btn.dataset.filtro;
+
+        carregarAgenda();
+    });
+});
+
+carregarEventosHome();
 
     /* =========================
        MODAL AO VIVO
@@ -357,30 +478,30 @@ document.addEventListener("DOMContentLoaded", () => {
     let timerErroLive = null;
 
     function abrirModalLive(e){
-    if(e) e.preventDefault();
+        if(e) e.preventDefault();
 
-    clearTimeout(timerErroLive);
+        clearTimeout(timerErroLive);
 
-    if(modalLive){
-        modalLive.classList.remove("erro");
-        modalLive.classList.add("ativo");
-        travarScroll();
-    }
-
-    if(iframeLive && iframeLive.dataset.src){
-        iframeLive.src = iframeLive.dataset.src;
-    }
-
-    timerErroLive = setTimeout(() => {
-        if(modalLive && modalLive.classList.contains("ativo")){
-            modalLive.classList.add("erro");
-
-            if(iframeLive){
-                iframeLive.src = "";
-            }
+        if(modalLive){
+            modalLive.classList.remove("erro");
+            modalLive.classList.add("ativo");
+            travarScroll();
         }
-    }, 6000);
-}
+
+        if(iframeLive && iframeLive.dataset.src){
+            iframeLive.src = iframeLive.dataset.src;
+        }
+
+        timerErroLive = setTimeout(() => {
+            if(modalLive && modalLive.classList.contains("ativo")){
+                modalLive.classList.add("erro");
+
+                if(iframeLive){
+                    iframeLive.src = "";
+                }
+            }
+        }, 6000);
+    }
 
     if(abrirLive){
         abrirLive.addEventListener("click", abrirModalLive);
@@ -391,24 +512,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if(fecharLive && modalLive){
-    fecharLive.addEventListener("click", () => {
-        clearTimeout(timerErroLive);
-
-        fecharModalComAnimacao(modalLive, () => {
-            modalLive.classList.remove("erro");
-
-            if(iframeLive){
-                iframeLive.src = "";
-            }
-
-            liberarScroll();
-        });
-    });
-}
-
-    if(modalLive){
-    modalLive.addEventListener("click", (e) => {
-        if(e.target === modalLive){
+        fecharLive.addEventListener("click", () => {
             clearTimeout(timerErroLive);
 
             fecharModalComAnimacao(modalLive, () => {
@@ -420,9 +524,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 liberarScroll();
             });
-        }
-    });
-}
+        });
+    }
+
+    if(modalLive){
+        modalLive.addEventListener("click", (e) => {
+            if(e.target === modalLive){
+                clearTimeout(timerErroLive);
+
+                fecharModalComAnimacao(modalLive, () => {
+                    modalLive.classList.remove("erro");
+
+                    if(iframeLive){
+                        iframeLive.src = "";
+                    }
+
+                    liberarScroll();
+                });
+            }
+        });
+    }
 
     /* =========================
        AULAS BÍBLICAS
@@ -668,6 +789,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if(modalLive){
                 modalLive.classList.remove("ativo");
+                modalLive.classList.remove("erro");
 
                 if(iframeLive){
                     iframeLive.src = "";

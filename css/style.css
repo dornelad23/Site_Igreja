@@ -175,6 +175,7 @@ nav a:hover::after{
     opacity:0;
     transition:1.5s;
     transform:scale(1.1);
+    will-change:opacity, transform;
 }
 
 .slide.active{
@@ -533,6 +534,7 @@ section h2::after{
     max-width:1100px;
     max-height:90vh;
     overflow-y:auto;
+    overscroll-behavior:contain;
     border-radius:24px;
     padding:40px;
     position:relative;
@@ -854,6 +856,7 @@ section h2::after{
     max-width:850px;
     max-height:85vh;
     overflow-y:auto;
+    overscroll-behavior:contain;
     border-radius:20px;
     padding:40px;
     position:relative;
@@ -1360,15 +1363,13 @@ section:not(.banner){
 .animar{
     opacity:0;
     transform:translateY(35px);
-    filter:blur(5px);
-    transition:opacity .7s ease, transform .7s ease, filter .7s ease;
+    transition:opacity .7s ease, transform .7s ease;
     will-change:opacity, transform;
 }
 
 .animar.ativo{
     opacity:1;
     transform:translateY(0);
-    filter:blur(0);
 }
 
 .animar.esquerda{
@@ -1566,7 +1567,7 @@ section:not(.banner){
         opacity:0;
         pointer-events:none;
         transform:translateY(-10px);
-        transition:.3s ease;
+        transition:opacity .25s ease, transform .25s ease;
     }
 
     nav.ativo{
@@ -1725,11 +1726,11 @@ section:not(.banner){
 
     .whatsapp-float{
         position:fixed !important;
-        right:16px !important;
-        bottom:16px !important;
-        width:56px !important;
-        height:56px !important;
-        z-index:99998 !important;
+        right:16px;
+        bottom:16px;
+        width:56px;
+        height:56px;
+        z-index:99998;
         transform:none !important;
     }
 }
@@ -1762,10 +1763,10 @@ section:not(.banner){
     }
 
     .whatsapp-float{
-        right:14px !important;
-        bottom:14px !important;
-        width:54px !important;
-        height:54px !important;
+        right:14px;
+        bottom:14px;
+        width:54px;
+        height:54px;
     }
 }
 
@@ -1779,7 +1780,6 @@ section:not(.banner){
     .animar{
         opacity:1 !important;
         transform:none !important;
-        filter:none !important;
     }
 }
 
@@ -1822,6 +1822,7 @@ section:not(.banner){
     height:100%;
     border:0;
     display:block;
+    background:#000;
 }
 
 .modal-player,
@@ -1841,45 +1842,6 @@ section:not(.banner){
     pointer-events:auto;
 }
 
-.player-conteudo,
-.live-conteudo,
-.modal-aulas-conteudo,
-.modal-conteudo{
-    transform:scale(.94) translateY(18px);
-    opacity:0;
-    transition:transform .28s ease, opacity .28s ease;
-}
-
-.modal-player.ativo .player-conteudo,
-.modal-live.ativo .live-conteudo,
-.modal-aulas.ativo .modal-aulas-conteudo,
-.modal-agenda.ativo .modal-conteudo{
-    transform:scale(1) translateY(0);
-    opacity:1;
-}
-
-/* =========================
-   ANIMAÇÃO GLOBAL MODAIS (ABRIR + FECHAR)
-========================= */
-
-.modal-player,
-.modal-live,
-.modal-aulas,
-.modal-agenda{
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .28s ease;
-}
-
-.modal-player.ativo,
-.modal-live.ativo,
-.modal-aulas.ativo,
-.modal-agenda.ativo{
-    opacity:1;
-    pointer-events:auto;
-}
-
-/* Conteúdo interno */
 .player-conteudo,
 .live-conteudo,
 .modal-aulas-conteudo,
