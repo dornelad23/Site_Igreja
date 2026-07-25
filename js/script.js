@@ -842,3 +842,162 @@ carregarEventosHome();
     }
 
 });
+
+/*=====================================================
+            MODAL HISTÓRIA
+=====================================================*/
+
+const modalHistoria = document.getElementById("modal-historia");
+const abrirHistoria = document.getElementById("abrir-historia");
+const fecharHistoria = document.getElementById("fechar-historia");
+
+const paginasHistoria = document.querySelectorAll(".historia-pagina");
+const indicadoresHistoria = document.querySelectorAll(".indicador");
+
+const btnAnteriorHistoria = document.getElementById("historia-anterior");
+const btnProximoHistoria = document.getElementById("historia-proximo");
+
+let paginaAtualHistoria = 0;
+
+/*=============================================
+        ABRIR MODAL
+=============================================*/
+
+if (abrirHistoria) {
+
+    abrirHistoria.addEventListener("click", () => {
+
+        modalHistoria.classList.add("ativo");
+
+        document.body.style.overflow = "hidden";
+
+        paginaAtualHistoria = 0;
+
+        atualizarHistoria();
+
+    });
+
+}
+
+/*=============================================
+        FECHAR MODAL
+=============================================*/
+
+function fecharModalHistoria() {
+
+    modalHistoria.classList.remove("ativo");
+
+    document.body.style.overflow = "";
+
+}
+
+if (fecharHistoria) {
+
+    fecharHistoria.addEventListener("click", fecharModalHistoria);
+
+}
+
+window.addEventListener("click", (e) => {
+
+    if (e.target === modalHistoria) {
+
+        fecharModalHistoria();
+
+    }
+
+});
+
+document.addEventListener("keydown", (e) => {
+
+    if (e.key === "Escape") {
+
+        fecharModalHistoria();
+
+    }
+
+});
+
+/*=============================================
+        TROCAR PÁGINAS
+=============================================*/
+
+function atualizarHistoria() {
+
+    paginasHistoria.forEach((pagina, indice) => {
+
+        pagina.classList.remove("ativa");
+
+        if (indice === paginaAtualHistoria) {
+
+            pagina.classList.add("ativa");
+
+        }
+
+    });
+
+    indicadoresHistoria.forEach((bolinha, indice) => {
+
+        bolinha.classList.remove("ativo");
+
+        if (indice === paginaAtualHistoria) {
+
+            bolinha.classList.add("ativo");
+
+        }
+
+    });
+
+    btnAnteriorHistoria.disabled = paginaAtualHistoria === 0;
+
+    btnProximoHistoria.disabled =
+        paginaAtualHistoria === paginasHistoria.length - 1;
+
+}
+
+/*=============================================
+        BOTÃO PRÓXIMO
+=============================================*/
+
+btnProximoHistoria.addEventListener("click", () => {
+
+    if (paginaAtualHistoria < paginasHistoria.length - 1) {
+
+        paginaAtualHistoria++;
+
+        atualizarHistoria();
+
+    }
+
+});
+
+/*=============================================
+        BOTÃO ANTERIOR
+=============================================*/
+
+btnAnteriorHistoria.addEventListener("click", () => {
+
+    if (paginaAtualHistoria > 0) {
+
+        paginaAtualHistoria--;
+
+        atualizarHistoria();
+
+    }
+
+});
+
+/*=============================================
+        CLIQUE NAS BOLINHAS
+=============================================*/
+
+indicadoresHistoria.forEach((item, indice) => {
+
+    item.addEventListener("click", () => {
+
+        paginaAtualHistoria = indice;
+
+        atualizarHistoria();
+
+    });
+
+});
